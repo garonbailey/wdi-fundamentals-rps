@@ -59,8 +59,8 @@ function getWinner(getPlayerMove, getComputerMove) {
     	winner = 'computer';
     } else if (playerMove === 'scissors' && computerMove === 'paper') {
     	winner = 'player';
-    } else {
-    	winner = 'This didn\'t make sense to my silly computer brain!';
+    } else if (playerMove !== 'rock' || playerMove !== 'paper' || playerMove !== 'scissors') {
+    	winner = 'Invalid selection';
     }
     return winner;
 }
@@ -79,7 +79,11 @@ function playToFive() {
     	} else if (winner === 'computer') {
     		computerWins += 1;
     		console.log(winner + ' has won!');
-    	} else {
+    	} else if (winner === 'Invalid selection') {
+    	    playerWins += 0;
+    	    computerWins += 0;
+    	    console.log('That\'s not a valid selection. Please choose again.');
+    	} else if (winner === 'tie') {
     		playerWins += 0;
     		computerWins += 0;
     		console.log("It's a tie!");
